@@ -6,12 +6,14 @@ pipeline {
     PIP = 'C:\\Users\\raybr\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip.exe'
 }
 
-    stages {
-        stage('Install Dependencies') {
-            steps {
-                bat 'pip install -r requirements.txt'
-            }
-        }
+stage('Install Dependencies') {
+    steps {
+        bat '''
+        "C:\\Users\\raybr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pip install --upgrade pip
+        "C:\\Users\\raybr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pip install -r requirements.txt
+        '''
+    }
+}
         stage('Run Tests') {
             steps {
                 bat 'pytest test_app.py'
