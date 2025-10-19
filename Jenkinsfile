@@ -1,25 +1,22 @@
 pipeline {
     agent any
-    
-environment {
-    PYTHON = 'C:\\Users\\raybr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
-    PIP = 'C:\\Users\\raybr\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip.exe'
-}
 
-stage('Install Dependencies') {
-    steps {
-        bat '''
-        "C:\\Users\\raybr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pip install --upgrade pip
-        "C:\\Users\\raybr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pip install -r requirements.txt
-        '''
-    }
-}
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                bat '''
+                "C:\\Users\\raybr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pip install --upgrade pip
+                "C:\\Users\\raybr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pip install -r requirements.txt
+                '''
+            }
+        }
 
         stage('Run Tests') {
             steps {
-                bat 'pytest test_app.py'
+                bat '"C:\\Users\\raybr\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pytest test_app.py'
             }
         }
+
         stage('Deploy') {
             when {
                 anyOf {
@@ -47,6 +44,7 @@ stage('Install Dependencies') {
                 )
             }
         }
+
         failure {
             script {
                 def payload = [
