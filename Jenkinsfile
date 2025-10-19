@@ -1,9 +1,6 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.10'
-        }
-    }
+    agent any
+
     stages {
         stage('Install Dependencies') {
             steps {
@@ -38,7 +35,7 @@ pipeline {
                     httpMode: 'POST',
                     contentType: 'APPLICATION_JSON',
                     requestBody: groovy.json.JsonOutput.toJson(payload),
-                    url: 'https://discord.com/api/webhooks/ISI WEBHOOK DI SINI'
+                    url: 'https://discord.com/api/webhooks/1429417582733037578/D0LRC6c0mjCYa-ktszCmmTc7EiBPd8vLM0XA9Ytbe2YG3abnWh4SEB2AuqKOCL4eeQ7b'
                 )
             }
         }
@@ -51,7 +48,7 @@ pipeline {
                     httpMode: 'POST',
                     contentType: 'APPLICATION_JSON',
                     requestBody: groovy.json.JsonOutput.toJson(payload),
-                    url: 'https://discord.com/api/webhooks/ISI WEBHOOK DI SINI'
+                    url: 'https://discord.com/api/webhooks/1429417582733037578/D0LRC6c0mjCYa-ktszCmmTc7EiBPd8vLM0XA9Ytbe2YG3abnWh4SEB2AuqKOCL4eeQ7b'
                 )
             }
         }
